@@ -4,7 +4,7 @@ author: "Ragyie Rawal"
 output: github_document
 ---
 
-```{r packages, include = FALSE}
+```{r setup, include = FALSE}
 # loading packages 
 
 library(tidyverse)
@@ -30,4 +30,13 @@ prob_one_df = tibble(
 knitr::kable(prob_one_df)
 ```
 
+```{r mean_problem_1}
+# Taking the mean of each variable in the dataframe 
 
+mean_random_sample = mean(pull(prob_one_df, random_sample))
+mean_vec_logical = mean(pull(prob_one_df, vec_logical))
+mean_vec_character = mean(pull(prob_one_df, vec_character))
+mean_vec_factor = mean(pull(prob_one_df, vec_factor))
+```
+
+When attempting to take the mean of each variable in the dataframe, it was possible to successfully take the mean of the random sample variable and the mean of the logical vector variable. It was not possible to take the mean of the charactor vector variable or the mean of the factor vector variable. 
