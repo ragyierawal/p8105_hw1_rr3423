@@ -5,21 +5,17 @@ output: github_document
 ---
 
 ```{r setup, include = FALSE}
-# loading packages 
-
 library(tidyverse)
 ```
 
 
 ## PROBLEM 1 
 
-```{r database}
+```{r df_create}
 # Setting seed for the random sample 
-
 set.seed(1)
 
 # Creating a dataframe
-
 prob_one_df = tibble(
   random_sample = rnorm(10),
   vec_logical = c(random_sample > 0), 
@@ -31,19 +27,17 @@ knitr::kable(prob_one_df)
 ```
 
 ```{r means}
-# Taking the mean of each variable in the dataframe 
-
+# Taking the mean of each variable in the dataframe
 mean_random_sample = mean(pull(prob_one_df, random_sample))
 mean_vec_logical = mean(pull(prob_one_df, vec_logical))
 mean_vec_character = mean(pull(prob_one_df, vec_character))
 mean_vec_factor = mean(pull(prob_one_df, vec_factor))
 ```
 
-When attempting to take the mean of each variable in the dataframe, it was possible to successfully take the mean of the random sample variable and the mean of the logical vector variable. It was not possible to take the mean of the character vector variable or the mean of the factor vector variable. 
+When attempting to take the mean of each variable in the dataframe, it was possible to successfully take the mean ofthe random sample variable and the mean of the logical vector variable. It was not possible to take the mean of the character vector variable or the mean of the factor vector variable. 
 
 ```{r converting_variables, message = FALSE, warning = FALSE}
 # Applying the as.numeric function to the logical, character, and factor variables 
-
 convert_logical = as.numeric(pull(prob_one_df, vec_logical))
 convert_character = as.numeric(pull(prob_one_df, vec_logical))
 convert_factor = as.numeric(pull(prob_one_df, vec_factor))
@@ -52,9 +46,23 @@ convert_factor = as.numeric(pull(prob_one_df, vec_factor))
 
 ## PROBLEM 2 
 
-```{r load_dataset}
-# Loading the penguins data set 
-
+```{r penguins_dataset}
+# loading dataset 
 data("penguins", package = "palmerpenguins")
+
+# looking at data in penguins dataset 
+str_penguins = str(penguins)
+head_penguins = head(penguins)
+tail_penguins = tail(penguins)
+names_penguins = names(penguins)
+
+# size of dataset 
+rows_penguins = nrow(penguins)
+cols_penguins = ncol(penguins)
+
+# determining mean flipper length 
+mean_flipper_length = mean(penguins$flipper_length_mm, na.rm = TRUE)
 ```
+
+The names of important variables in the penguins dataset are: `r names_penguins`. The number of rows in the penguins dataset is `r rows_penguins`. The number of columns in the penguins dataset is `r cols_penguins`. The mean flipper length is `r round(mean_flipper_length, digits = 2)` mm.  
 
