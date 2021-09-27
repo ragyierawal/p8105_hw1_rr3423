@@ -69,13 +69,16 @@ The names of important variables in the penguins dataset are: `r names_penguins`
 ```{r scatterplot_penguins}
 # creating dataframe for flipper length, bill length, and species 
 plot_df = tibble(
-  x = penguins$bill_length_mm,
-  y = penguins$flipper_length_mm,
-  z = penguins$species
+  bill_length_mm = penguins$bill_length_mm,
+  flipper_length_mm = penguins$flipper_length_mm,
+  species = penguins$species
 )
 
 # making scatterplot for flipper length and bill length
-ggplot(plot_df, aes(x = x, y = y, color = z)) + geom_point()
+ggplot(plot_df, aes(x = bill_length_mm, y = flipper_length_mm, color = species)) + geom_point()
+
+# exporting scatterplot to project directory 
+ggsave("p2_scatter_plot.pdf", height = 4, width = 6)
 ```
 
 
