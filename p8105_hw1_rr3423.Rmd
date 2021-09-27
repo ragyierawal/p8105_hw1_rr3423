@@ -11,7 +11,7 @@ library(tidyverse)
 ```
 
 
-## Problem 1 
+## PROBLEM 1 
 
 ```{r database}
 # Setting seed for the random sample 
@@ -47,5 +47,14 @@ When attempting to take the mean of each variable in the dataframe, it was possi
 convert_logical = as.numeric(pull(prob_one_df, vec_logical))
 convert_character = as.numeric(pull(prob_one_df, vec_logical))
 convert_factor = as.numeric(pull(prob_one_df, vec_factor))
+```
+
+
+## PROBLEM 2 
+
+```{r load_dataset}
+# Loading the penguins data set 
+
+data("penguins", package = "palmerpenguins")
 ```
 
