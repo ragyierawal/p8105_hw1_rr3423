@@ -66,3 +66,16 @@ mean_flipper_length = mean(penguins$flipper_length_mm, na.rm = TRUE)
 
 The names of important variables in the penguins dataset are: `r names_penguins`. The number of rows in the penguins dataset is `r rows_penguins`. The number of columns in the penguins dataset is `r cols_penguins`. The mean flipper length is `r round(mean_flipper_length, digits = 2)` mm.  
 
+```{r scatterplot_penguins}
+# creating dataframe for flipper length, bill length, and species 
+plot_df = tibble(
+  x = penguins$bill_length_mm,
+  y = penguins$flipper_length_mm,
+  z = penguins$species
+)
+
+# making scatterplot for flipper length and bill length
+ggplot(plot_df, aes(x = x, y = y, color = z)) + geom_point()
+```
+
+
