@@ -49,7 +49,7 @@ convert_character = as.numeric(pull(prob_one_df, vec_character))
 convert_factor = as.numeric(pull(prob_one_df, vec_factor))
 ```
 
-Converting the logical variable works because using the as.numeric function converts the "TRUE" and "FALSE" logical values to "1" and "0" numeric values. This helps explain why it is possible to take the mean of the logical variable because the logical values can be converted to numeric values..
+Converting the logical variable works because using the as.numeric function converts the "TRUE" and "FALSE" logical values to "1" and "0" numeric values. This helps explain why it is possible to take the mean of the logical variable because the logical values can be converted to numeric values.
 
 Converting the character variable using the as.numeric function does not work because there are only character strings in the character variable, and character strings cannot directly be converted to numeric values. This is why there is a warning message that "NAs introduced by coercion" because R failed to convert the character strings to numeric values. This helps explain why it is not possible to take the mean of the character variable.
 
