@@ -27,36 +27,32 @@ knitr::kable(prob_one_df)
 ```
 
 ```{r means}
-# using pull function to pull variables out of the dataframe
-random = pull(prob_one_df, random_sample)
+# taking the mean of each variable in the dataframe
+mean_random_sample = mean(pull(prob_one_df, random_sample))
 
-logical = pull(prob_one_df, vec_logical)
+mean_vec_logical = mean(pull(prob_one_df, vec_logical))
 
-character = pull(prob_one_df, vec_character)
+mean_vec_character = mean(pull(prob_one_df, vec_character))
 
-factor = pull(prob_one_df, vec_factor)
-
-# Taking the mean of each variable in the dataframe
-mean_random_sample = mean(random)
-
-mean_vec_logical = mean(logical)
-
-mean_vec_character = mean(character) 
-
-mean_vec_factor = mean(factor)
+mean_vec_factor = mean(pull(prob_one_df, vec_factor))
 ```
 
-When attempting to take the mean of each variable in the dataframe, it was possible to successfully take the mean of the random sample variable and the mean of the logical vector variable. It was not possible to take the mean of the character vector variable or the mean of the factor vector variable. 
+When attempting to take the mean of each variable in the dataframe, it was possible to successfully take the mean of the random sample variable and the mean of the logical variable. It was not possible to take the mean of the character variable or the mean of the factor variable. 
 
 ```{r converting_variables, message = FALSE, warning = FALSE}
 # Applying the as.numeric function to the logical, character, and factor variables 
-convert_logical = as.numeric(logical)
+convert_logical = as.numeric(pull(prob_one_df, vec_logical))
 
-convert_character = as.numeric(character)
+convert_character = as.numeric(pull(prob_one_df, vec_character))
 
-convert_factor = as.numeric(factor)
+convert_factor = as.numeric(pull(prob_one_df, vec_factor))
 ```
 
+Converting the logical variable using the as.numeric function converts the "TRUE" and "FALSE" values to "1" and "0" numeric values. This conversion works because the TRUE and FALSE values can be converted to corresponding numeric values. This helps explain why it is possible to take the mean of the logical variable because the logical values can be converted to numeric values, and then the mean of the numeric values can be calculated.
+
+Converting the character variable using the as.numeric function does not work because there are only character strings in the character variable, and character strings cannot directly be converted to numeric values. This is why there is a warning message that "NAs introduced by coercion" because R failed to convert the character strings to numeric values. This helps explain why it is not possible to take the mean of the character variable. It is not possible to take the mean of character strings because they are not numeric values. 
+
+Converting the factor variable using the as.numeric function does not give the expected output. This conversion only provides the factor levels, but not the numeric values contained in the factor vector. This is because the factor vector is in character format, so it only gives the factor levels. This explains why it is not possible to get the mean of the factor variable because it is not possible to get the mean of character strings. 
 
 ## PROBLEM 2 
 
