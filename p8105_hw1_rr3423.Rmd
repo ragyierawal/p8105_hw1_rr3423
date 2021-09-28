@@ -18,7 +18,7 @@ set.seed(1)
 # Creating a dataframe
 prob_one_df = tibble(
   random_sample = rnorm(10),
-  vec_logical = c(random_sample > 0), 
+  vec_logical = random_sample > 0, 
   vec_character = c("a", "b", "c", "d", "e", "f", "g", "h", "i", "j"),
   vec_factor = factor(c("low", "medium", "high", "low", "medium", "high", "low", "medium", "high", "low" ))
 )
@@ -54,33 +54,61 @@ Converting the character variable using the as.numeric function does not work be
 
 Converting the factor variable using the as.numeric function does not give the expected output. This conversion only provides the factor levels, but not the numeric values contained in the factor vector. This is because the factor vector is in character format, so it only gives the factor levels. This explains why it is not possible to get the mean of the factor variable because it is not possible to get the mean of character strings. 
 
+
 ## PROBLEM 2 
 
 ```{r penguins_dataset}
 # loading dataset 
 data("penguins", package = "palmerpenguins")
 
-# looking at data in penguins dataset 
-str_penguins = str(penguins)
+# looking at the names and values of important variables 
+names_species = pull(penguins, species)
 
-head_penguins = head(penguins)
+names_island = pull(penguins, island)
 
-tail_penguins = tail(penguins)
+names_sex = pull(penguins, sex)
 
-names_penguins = names(penguins)
+names_year = pull(penguins, year)
 
-# size of dataset 
-rows_penguins = nrow(penguins)
+# calculating means and standard deviations for important numeric variables
 
-cols_penguins = ncol(penguins)
+mean_bill_length = mean(pull(penguins, bill_length_mm), na.rm = TRUE)
+sd_bill_length = sd(pull(penguins, bill_length_mm), na.rm = TRUE)
+
+mean_bill_depth = mean(pull(penguins, bill_depth_mm), na.rm = TRUE)
+sd_bill_depth = sd(pull(penguins, bill_depth_mm), na.rm = TRUE)
+
+mean_flipper_length = mean(pull(penguins, flipper_length_mm), na.rm = TRUE)
+sd_flipper_length = sd(pull(penguins, flipper_length_mm), na.rm = TRUE)
+
+mean_body_mass = mean(pull(penguins, body_mass_g), na.rm = TRUE)
+sd_body_mass = sd(pull(penguins, body_mass_g), na.rm = TRUE)
 
 # determining mean flipper length 
-mean_flipper_length = mean(penguins$flipper_length_mm, na.rm = TRUE)
+mean_flipper_length = mean(pull(penguins, flipper_length_mm), na.rm = TRUE)
 ```
 
-The names of important variables in the penguins dataset are: `r names_penguins`. The number of rows in the penguins dataset is `r rows_penguins`. The number of columns in the penguins dataset is `r cols_penguins`. The mean flipper length is `r round(mean_flipper_length, digits = 2)` mm.  
+The important variables in the penguins dataset are `r names(penguins)`. 
 
-```{r scatterplot_penguins}
+The species in this dataset are `r unique(names_species, na.rm = TRUE)`. 
+
+The islands in this dataset are `r unique(names_island, na.rm = TRUE)`. 
+
+The sex in this dataset are `r unique(na.omit(names_sex))`. 
+
+The years in this dataset are `r unique(names_year, na.rm = TRUE)`. 
+
+The mean of the bill lengths is `r round(mean_bill_length, digits = 2)` mm. The standard deviation of bill lengths is `r round(sd_bill_length, digits = 2)` mm. 
+
+The mean of the bill depths is `r round(mean_bill_depth, digits = 2)` mm. The standard deviation of bill depths is `r round(sd_bill_depth, digits = 2)` mm. 
+
+The mean of of the flipper lengths is `r round(mean_flipper_length, digits = 2)` mm. The standard deviation of flipper lengths is `r round(sd_flipper_length, digits = 2)` mm. 
+
+The number of rows in the penguins dataset is `r nrow(penguins)`. The number of columns in the penguins dataset is `r ncol(penguins)`. 
+
+The mean flipper length is `r round(mean_flipper_length, digits = 2)` mm.  
+
+```{r scatterplot_penguins, message = FALSE, warning = FALSE}
 
 # creating dataframe for flipper length, bill length, and species 
 plot_df = tibble(
@@ -95,5 +123,3 @@ ggplot(plot_df, aes(x = bill_length_mm, y = flipper_length_mm, color = species))
 # exporting scatterplot to project directory 
 ggsave("p2_scatter_plot.pdf", height = 4, width = 6)
 ```
-
-
