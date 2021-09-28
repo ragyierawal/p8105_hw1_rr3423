@@ -103,7 +103,9 @@ The mean of the bill lengths is `r round(mean_bill_length, digits = 2)` mm. The 
 
 The mean of the bill depths is `r round(mean_bill_depth, digits = 2)` mm. The standard deviation of bill depths is `r round(sd_bill_depth, digits = 2)` mm. 
 
-The mean of of the flipper lengths is `r round(mean_flipper_length, digits = 2)` mm. The standard deviation of flipper lengths is `r round(sd_flipper_length, digits = 2)` mm. 
+The mean of the flipper lengths is `r round(mean_flipper_length, digits = 2)` mm. The standard deviation of flipper lengths is `r round(sd_flipper_length, digits = 2)` mm. 
+
+The mean of the body weights is `r round(mean_body_mass, digits = 2)` mm. The standard deviation of body weights is `r round(sd_body_mass, digits = 2)` mm.
 
 The number of rows in the penguins dataset is `r nrow(penguins)`. The number of columns in the penguins dataset is `r ncol(penguins)`. 
 
