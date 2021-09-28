@@ -107,15 +107,8 @@ The mean of the body weights is `r round(mean_body_mass, digits = 2)`. The stand
 The number of rows in the penguins dataset is `r nrow(penguins)`. The number of columns in the penguins dataset is `r ncol(penguins)`. 
 
 ```{r scatterplot_penguins, message = FALSE, warning = FALSE}
-# creating dataframe for flipper length, bill length, and species 
-plot_df = tibble(
-  bill_length_mm = penguins$bill_length_mm,
-  flipper_length_mm = penguins$flipper_length_mm,
-  species = penguins$species
-)
-
 # making scatterplot for flipper length and bill length
-ggplot(plot_df, aes(x = bill_length_mm, y = flipper_length_mm, color = species)) + geom_point() + ggtitle("Flipper Length vs. Bill Length")
+ggplot(penguins, aes(x = bill_length_mm, y = flipper_length_mm, color = species)) + geom_point() + ggtitle("Flipper Length vs. Bill Length")
 
 # exporting scatterplot to project directory 
 ggsave("p2_scatter_plot.pdf", height = 4, width = 6)
